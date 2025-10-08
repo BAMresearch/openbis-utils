@@ -11,6 +11,7 @@ Clone the repo and install locally:
 git clone https://github.com/TomCharlesRousseau/openbis-utils.git
 cd openbis-utils
 pip install .
+```
 
 Quick Start
 Connect to openBIS
