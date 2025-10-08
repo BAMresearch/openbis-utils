@@ -29,8 +29,6 @@ openbis-utils/
 ├─ test_bam_users.py
 └─ test_vocabularies.py
 
-yaml
-Copy code
 
 ---
 
@@ -62,8 +60,7 @@ print("UserId:", uid)
 # Print detailed info for that user
 get_info_from_userid(uid, openbis=(o, userid, space))
 Vocabulary Utilities
-python
-Copy code
+
 from openbis_utils.vocabularies import list_vocabularies, get_vocabulary_terms
 
 # List all PropertyTypes with controlled vocabularies
@@ -79,14 +76,10 @@ example_bam_users.py — demonstrates usage of connection and bam_users.
 
 Run scripts from the terminal:
 
-bash
-Copy code
 python scripts/example_bam_users.py
 Tests
 Unit tests are available in the tests/ folder. Run them using:
 
-bash
-Copy code
 pytest tests
 Notes
 The package automatically handles authentication via PAT or username/password.
@@ -102,8 +95,6 @@ For early collaboration, add your GitHub account as a collaborator on this priva
 
 Future plan: transfer repo to BAMresearch organization.
 
-yaml
-Copy code
 
 ---
 
