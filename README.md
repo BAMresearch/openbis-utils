@@ -6,7 +6,7 @@ It provides tools to connect, retrieve user information, and manage vocabularies
 ---
 
 ## Folder Structure
-
+`
 openbis-utils/
 │
 ├─ README.md
@@ -28,7 +28,7 @@ openbis-utils/
 ├─ test_connection.py
 ├─ test_bam_users.py
 └─ test_vocabularies.py
-
+`
 
 ---
 
@@ -42,15 +42,13 @@ cd openbis-utils
 pip install .
 Quick Start
 Connect to openBIS
-python
-Copy code
+
 from openbis_utils.connection import connect_openbis
 
 o, userid, space = connect_openbis()
 print(f"Connected as {userid} in space {space}")
 BAM User Utilities
-python
-Copy code
+
 from openbis_utils.bam_users import get_userid_from_fullname, get_info_from_userid
 
 # Get a userId from full name
