@@ -1,0 +1,10 @@
+[project]
+name = "openbis-utils"
+version = "0.1.0"
+description = "Utility functions for working with openBIS at BAM"
+authors = [{ name = "Tom Rousseau" }]
+dependencies = ["pybis"]
+
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
