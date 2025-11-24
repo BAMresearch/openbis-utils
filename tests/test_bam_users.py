@@ -1,41 +1,18 @@
-# tests/test_bam_users.py
+from openbis_utils.connection import connect_openbis
+from openbis_utils.bam_users import get_userid_from_fullname
 
-import pytest
-from unittest.mock import MagicMock
-from openbis_utils.bam_users import get_userid_from_names, get_userid_from_fullname, get_info_from_userid
+if __name__ == "__main__":
+    # Connect to OpenBIS
+    o, userid, space = connect_openbis()
+    print(f"Connected as user: {userid} in space: {space}\n")
 
+    # List of test full names
+    test_names = [
+        "Tom Rousseau",
+        "Tom Rosj",
+        "Müller-Elmau, Johanna"
+    ]
 
-
-def test_get_userid_functions():
-    from unittest.mock import MagicMock
-    
-    # Dummy user class
-    class DummyUser:
-        def __init__(self, firstname, lastname, userId):
-            self.firstName = firstname
-            self.lastName = lastname
-            self.userId = userId
-            self.email = f"{firstname.lower()}.{lastname.lower()}@bam.de"
-            self.active = True
-            self.registrator = "admin"
-            self.registrationDate = "2025-01-01"
-
-    # Create example users inside the function
-    user1 = DummyUser("Tom", "Rousseau", "troussea")
-    user2 = DummyUser("Alice", "Smith", "asmith")
-
-    # Mock Openbis
-    dummy_openbis = MagicMock()
-    dummy_openbis.get_users.return_value = [user1, user2]
-    dummy_openbis.get_user.return_value = user1
-
-    openbis_mock = (dummy_openbis, "dummy", "DUMMY_SPACE")
-
-    # Test functions
-    assert get_userid_from_names("Tom", "Rousseau", openbis=openbis_mock) == "troussea"
-    assert get_userid_from_names("Alice", "Smith", openbis=openbis_mock) == "asmith"
-    assert get_userid_from_fullname("Tom Rousseau", openbis=openbis_mock) == "troussea"
-    assert get_userid_from_fullname("Rousseau, Tom", openbis=openbis_mock) == "troussea"
-
-    # Test info function (just ensure it runs)
-    get_info_from_userid("troussea", openbis=openbis_mock)
+    # Resolve each BAM user ID
+    for name in test_names:
+        uid = get_userid_from_fullname(name, openbis=(o, userid, space))

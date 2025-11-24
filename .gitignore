@@ -1,0 +1,14 @@
+# Python cache
+__pycache__/
+*.pyc
+
+# Sensitive files
+.env
+OPENBIS_PAT.txt
+tests/
+scripts/
+
+# Build/dist
+*.egg-info/
+build/
+dist/
