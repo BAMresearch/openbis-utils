@@ -11,6 +11,9 @@ requires-python = ">=3.11"
 authors = [
     { name = "Tom Rousseau" }
 ]
+dependencies = [
+    "pybis~=1.37.1rc4"
+]
 
 [tool.setuptools]
 packages = ["openbis_utils"]
