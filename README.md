@@ -13,10 +13,3 @@ cd openbis-utils
 pip install .
 ```
 
-Quick Start
-Connect to openBIS
-
-from openbis_utils.connection import connect_openbis
-
-o, userid, space = connect_openbis()
-print(f"Connected as {userid} in space {space}")
