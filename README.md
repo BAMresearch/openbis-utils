@@ -1,15 +1,28 @@
 # openbis-utils
 
-A small Python utility package for interacting with BAM's openBIS instance.  
-It provides tools to connect, retrieve user information, and manage vocabularies.
+`openbis-utils` is a small Python utility package designed to simplify common tasks when working with OpenBIS at BAM. It contains helper functions for user ID resolution, OpenBIS connection etc...
+
+---
+
+## Features
+
+- **BAM User Utilities**: Resolve BAM user IDs from full names, handle duplicates, and fetch user info.
+- **OpenBIS Connection**: Simplified connection function that supports PAT or username/password authentication.
+
+---
 
 ## Installation
 
-Clone the repo and install locally:
+You can install the package directly from GitHub:
 
-```bash
-git clone https://github.com/TomCharlesRousseau/openbis-utils.git
+```
+pip install git+https://github.com/BAMresearch/openbis-utils.git  
+```
+
+## For development
+```
+git clone https://github.com/BAMresearch/openbis-utils.git
 cd openbis-utils
-pip install .
+pip install -e .
 ```
 
