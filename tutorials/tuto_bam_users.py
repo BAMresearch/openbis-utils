@@ -8,9 +8,10 @@ if __name__ == "__main__":
 
     # List of test full names
     test_names = [
-        "Tom Rousseau",
-        "Tom Rosj",
-        "Müller-Elmau, Johanna"
+        "Müller-Elmau, Johanna",
+        "Müller, Johanna",
+        "Müller-Elmau, John",
+        "Mueller-Elmau, Johanna"
     ]
 
     # Resolve each BAM user ID

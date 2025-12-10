@@ -36,3 +36,5 @@ def get_vocabulary_dict(vocab_code, openbis=None):
     df = get_vocabulary_terms(vocab_code, openbis=openbis)
     vocab_dict = dict(zip(df["code"], df.get("label", df["code"])))
     return vocab_dict
+
+
