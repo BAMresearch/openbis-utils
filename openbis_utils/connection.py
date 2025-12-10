@@ -1,34 +1,35 @@
-from pybis import Openbis
 from os import environ
-from getpass import getuser, getpass
+from pybis import Openbis
+from getpass import getpass, getuser
 
-def connect_openbis(url='https://main.datastore.bam.de/', pat='', userid='', space=''):
+_cached_password = None
+
+def connect_openbis(url='https://main.datastore.bam.de/', pat=None, userid=None, space=None):
     """
-    Connect to openBIS and return the Openbis object, resolved userid, and space.
-    
-    Parameters:
-        url (str): URL of the openBIS instance
-        pat (str): Personal Access Token (optional)
-        userid (str): BAM user ID (optional)
-        space (str): Space to use (optional)
-    
-    Returns:
-        tuple: (Openbis object, resolved userid, resolved space)
+    Connect to OpenBIS using PAT if available; fallback to password only once per session.
+    Returns: (Openbis object, userid, space)
     """
-    try:
-        # Attempt to read PAT from argument or environment/file
-        pat = pat or open(environ.get('OPENBIS_PAT_FILE', 'OPENBIS_PAT.txt'), 'r').read().strip()
+    global _cached_password
+
+    # Lire le PAT si pas passé en argument
+    if not pat:
+        pat_file = environ.get('OPENBIS_PAT_FILE', 'OPENBIS_PAT.txt')
+        try:
+            with open(pat_file, 'r') as f:
+                pat = f.read().strip()
+        except FileNotFoundError:
+            pat = None
+
+    if pat:
+        # Connexion via token
         o = Openbis(url, token=pat)
-        userid = o.token.split('-')[1]
-    except Exception:
-        # Fallback: authenticate using username/password
+        resolved_userid = userid or getuser()
+    else:
+        # Connexion fallback mot de passe
         o = Openbis(url)
-        userid = userid.lower() or getuser()
-        password = getpass(f'Enter password for user {userid} at {url}: ')
-        o.login(userid, password)
+        resolved_userid = userid or getuser()
+        if not _cached_password:
+            _cached_password = getpass(f"Enter password for user {resolved_userid} at {url}: ")
+        o.login(resolved_userid, _cached_password)
 
-    # Retrieve person info to resolve default space
-    person = o.get_person(userid)
-    space = space.upper() or person.space
-
-    return o, userid, space
+    return o, resolved_userid, space
