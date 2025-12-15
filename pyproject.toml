@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "openbis-utils"
-version = "0.1.0"
+version = "0.2.0"
 description = "Utilities for OpenBIS integration"
 readme = "README.md"
 requires-python = ">=3.11"
@@ -12,7 +12,8 @@ authors = [
     { name = "Tom Rousseau" }
 ]
 dependencies = [
-    "pybis~=1.37.1rc4"
+    "pybis~=1.37.1rc4",
+    "keyring>=24.0"
 ]
 
 [tool.setuptools]
