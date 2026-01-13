@@ -1,13 +1,10 @@
-<<<<<<< HEAD
 from bs4 import BeautifulSoup
 
-=======
->>>>>>> bam/main
+
 def get_all_properties(sample_id, o):
     sample = o.get_sample(sample_id)
     if sample is None:
         raise ValueError(f"No sample found: {sample_id}")
-<<<<<<< HEAD
     props_dict = {
         attr: getattr(sample.props, attr)
         for attr in dir(sample.props)
@@ -16,18 +13,11 @@ def get_all_properties(sample_id, o):
     return props_dict
 
 
-=======
-    props_dict = {attr: getattr(sample.props, attr) for attr in dir(sample.props)
-                  if not attr.startswith('$')}
-    return props_dict
-
->>>>>>> bam/main
 def get_single_property(sample_id, property_name, o):
     sample = o.get_sample(sample_id)
     if sample is None:
         raise ValueError(f"No sample found: {sample_id}")
     if not hasattr(sample.props, property_name):
-<<<<<<< HEAD
         raise ValueError(
             f"Property '{property_name}' does not exist in sample {sample_id}"
         )
@@ -38,15 +28,6 @@ def get_nonempty_properties(sample_id, o):
     """
     Return all properties of a sample that are not empty (None, empty string, or empty list).
 
-=======
-        raise ValueError(f"Property '{property_name}' does not exist in sample {sample_id}")
-    return getattr(sample.props, property_name)
-
-def get_nonempty_properties(sample_id, o):
-    """
-    Return all properties of a sample that are not empty (None, empty string, or empty list).
-    
->>>>>>> bam/main
     Parameters:
         sample_id (str): permID or sample identifier of the sample
         o (Openbis): OpenBIS connection object
@@ -60,7 +41,6 @@ def get_nonempty_properties(sample_id, o):
         for k, v in all_props.items()
         if v not in (None, "", [])  # filter out empty values
     }
-<<<<<<< HEAD
     return nonempty_props
 
 
@@ -159,6 +139,3 @@ def extract_tables_as_list(
             all_tables.append(table_dict)
 
     return all_tables
-=======
-    return nonempty_props
->>>>>>> bam/main
